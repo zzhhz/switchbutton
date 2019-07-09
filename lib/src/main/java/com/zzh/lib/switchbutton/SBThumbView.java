@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sd.lib.switchbutton;
+package com.zzh.lib.switchbutton;
 
 import android.content.Context;
 import android.view.View;
 
-class SBThumbView extends View
-{
-    public SBThumbView(Context context)
-    {
+class SBThumbView extends View {
+    public SBThumbView(Context context) {
         super(context);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(heightMeasureSpec, heightMeasureSpec);
     }
 }

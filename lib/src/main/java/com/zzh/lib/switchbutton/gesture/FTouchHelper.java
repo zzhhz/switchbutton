@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sd.lib.switchbutton.gesture;
+package com.zzh.lib.switchbutton.gesture;
 
 import android.content.Context;
 import android.os.Build;

@@ -1,4 +1,4 @@
-package com.sd.www.switchbutton;
+package com.zzh.switchbutton;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sd.lib.switchbutton;
+package com.zzh.lib.switchbutton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-class SBAttrModel
-{
+
+class SBAttrModel {
     /**
      * 正常view图片id
      */
@@ -68,8 +68,7 @@ class SBAttrModel
      * @param context
      * @param attrs
      */
-    public void parse(Context context, AttributeSet attrs)
-    {
+    public void parse(Context context, AttributeSet attrs) {
         imageNormalResId = R.drawable.lib_sb_layer_normal_view;
         imageCheckedResId = R.drawable.lib_sb_layer_checked_view;
         imageThumbResId = R.drawable.lib_sb_layer_thumb_view;
@@ -80,16 +79,14 @@ class SBAttrModel
         marginRight = defaultMargin;
         marginBottom = defaultMargin;
 
-        if (attrs != null)
-        {
+        if (attrs != null) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LibSwitchButton);
 
             imageNormalResId = a.getResourceId(R.styleable.LibSwitchButton_sbImageNormal, imageNormalResId);
             imageCheckedResId = a.getResourceId(R.styleable.LibSwitchButton_sbImageChecked, imageCheckedResId);
             imageThumbResId = a.getResourceId(R.styleable.LibSwitchButton_sbImageThumb, imageThumbResId);
 
-            if (a.hasValue(R.styleable.LibSwitchButton_sbMargins))
-            {
+            if (a.hasValue(R.styleable.LibSwitchButton_sbMargins)) {
                 int margins = a.getDimensionPixelSize(R.styleable.LibSwitchButton_sbMargins, defaultMargin);
                 marginLeft = margins;
                 marginTop = margins;
@@ -117,53 +114,43 @@ class SBAttrModel
         }
     }
 
-    public int getImageNormalResId()
-    {
+    public int getImageNormalResId() {
         return imageNormalResId;
     }
 
-    public int getImageCheckedResId()
-    {
+    public int getImageCheckedResId() {
         return imageCheckedResId;
     }
 
-    public int getImageThumbResId()
-    {
+    public int getImageThumbResId() {
         return imageThumbResId;
     }
 
-    public int getMarginLeft()
-    {
+    public int getMarginLeft() {
         return marginLeft;
     }
 
-    public int getMarginTop()
-    {
+    public int getMarginTop() {
         return marginTop;
     }
 
-    public int getMarginRight()
-    {
+    public int getMarginRight() {
         return marginRight;
     }
 
-    public int getMarginBottom()
-    {
+    public int getMarginBottom() {
         return marginBottom;
     }
 
-    public boolean isChecked()
-    {
+    public boolean isChecked() {
         return isChecked;
     }
 
-    public boolean isNeedToggleAnim()
-    {
+    public boolean isNeedToggleAnim() {
         return isNeedToggleAnim;
     }
 
-    public boolean isDebug()
-    {
+    public boolean isDebug() {
         return isDebug;
     }
 }

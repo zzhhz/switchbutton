@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sd.lib.switchbutton;
+package com.zzh.lib.switchbutton;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
@@ -22,11 +22,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sd.lib.switchbutton.gesture.FTouchHelper;
+import com.zzh.lib.switchbutton.gesture.FTouchHelper;
 
 
-public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
-{
+public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton {
     private View mViewNormal;
     private View mViewChecked;
     private View mViewThumb;
@@ -41,8 +40,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
 
     protected boolean mIsDebug;
 
-    public BaseSwitchButton(Context context, AttributeSet attrs)
-    {
+    public BaseSwitchButton(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mAttrModel.parse(context, attrs);
@@ -65,63 +63,53 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         mViewThumb = thumb;
     }
 
-    public void setDebug(boolean debug)
-    {
+    public void setDebug(boolean debug) {
         mIsDebug = debug;
     }
 
-    protected final String getDebugTag()
-    {
+    protected final String getDebugTag() {
         return getClass().getSimpleName();
     }
 
     @Override
-    protected void onFinishInflate()
-    {
+    protected void onFinishInflate() {
         super.onFinishInflate();
 
         final View normal = findViewById(R.id.lib_sb_view_normal);
-        if (normal != null)
-        {
+        if (normal != null) {
             removeView(normal);
             setViewNormal(normal);
         }
 
         final View checked = findViewById(R.id.lib_sb_view_checked);
-        if (checked != null)
-        {
+        if (checked != null) {
             removeView(checked);
             setViewChecked(checked);
         }
 
         final View thumb = findViewById(R.id.lib_sb_view_thumb);
-        if (thumb != null)
-        {
+        if (thumb != null) {
             removeView(thumb);
             setViewThumb(thumb);
         }
     }
 
-    private void setViewNormal(View viewNormal)
-    {
+    private void setViewNormal(View viewNormal) {
         if (replaceOldView(mViewNormal, viewNormal))
             mViewNormal = viewNormal;
     }
 
-    private void setViewChecked(View viewChecked)
-    {
+    private void setViewChecked(View viewChecked) {
         if (replaceOldView(mViewChecked, viewChecked))
             mViewChecked = viewChecked;
     }
 
-    private void setViewThumb(View viewThumb)
-    {
+    private void setViewThumb(View viewThumb) {
         if (replaceOldView(mViewThumb, viewThumb))
             mViewThumb = viewThumb;
     }
 
-    private boolean replaceOldView(View viewOld, View viewNew)
-    {
+    private boolean replaceOldView(View viewOld, View viewNew) {
         if (viewNew == null || viewNew == viewOld)
             return false;
 
@@ -130,8 +118,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         removeView(viewOld);
 
         final ViewGroup.LayoutParams paramsNew = viewNew.getLayoutParams();
-        if (paramsNew != null)
-        {
+        if (paramsNew != null) {
             params.width = paramsNew.width;
             params.height = paramsNew.height;
         }
@@ -145,8 +132,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @return
      */
-    protected final int getLeftNormal()
-    {
+    protected final int getLeftNormal() {
         return mAttrModel.getMarginLeft();
     }
 
@@ -155,8 +141,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @return
      */
-    protected final int getLeftChecked()
-    {
+    protected final int getLeftChecked() {
         return getMeasuredWidth() - mViewThumb.getMeasuredWidth() - mAttrModel.getMarginRight();
     }
 
@@ -165,8 +150,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @return
      */
-    protected final int getAvailableWidth()
-    {
+    protected final int getAvailableWidth() {
         return getLeftChecked() - getLeftNormal();
     }
 
@@ -175,8 +159,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @return
      */
-    private int getScrollDistance()
-    {
+    private int getScrollDistance() {
         return mViewThumb.getLeft() - getLeftNormal();
     }
 
@@ -207,8 +190,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      * @param checked
      * @param anim
      */
-    private void updateViewByState(boolean checked, boolean anim)
-    {
+    private void updateViewByState(boolean checked, boolean anim) {
         final int startLeft = mViewThumb.getLeft();
         final int endLeft = checked ? getLeftChecked() : getLeftNormal();
 
@@ -216,13 +198,10 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
             Log.i(getDebugTag(), "updateViewByState " + checked + ":" + startLeft + " -> " + endLeft + " anim:" + anim);
 
         abortAnimation();
-        if (startLeft != endLeft)
-        {
-            if (anim)
-            {
+        if (startLeft != endLeft) {
+            if (anim) {
                 smoothScroll(startLeft, endLeft);
-            } else
-            {
+            } else {
                 layoutInternal();
             }
         }
@@ -233,8 +212,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @param delta 移动量
      */
-    protected final void moveView(int delta)
-    {
+    protected final void moveView(int delta) {
         if (delta == 0)
             return;
 
@@ -250,8 +228,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         notifyViewPositionChanged();
     }
 
-    private void notifyViewPositionChanged()
-    {
+    private void notifyViewPositionChanged() {
         final float percent = getScrollPercent();
         mViewChecked.setAlpha(percent);
         mViewNormal.setAlpha(1.0f - percent);
@@ -265,14 +242,12 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
      *
      * @param state
      */
-    protected final void setScrollState(ScrollState state)
-    {
+    protected final void setScrollState(ScrollState state) {
         if (state == null)
             throw new NullPointerException();
 
         final ScrollState old = mScrollState;
-        if (old != state)
-        {
+        if (old != state) {
             mScrollState = state;
 
             if (mIsDebug)
@@ -287,8 +262,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         measureChild(mViewNormal, widthMeasureSpec, heightMeasureSpec);
         measureChild(mViewChecked, widthMeasureSpec, heightMeasureSpec);
 
@@ -305,15 +279,13 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         setMeasuredDimension(width, height);
     }
 
-    private static int getMeasureSize(int size, int measureSpec)
-    {
+    private static int getMeasureSize(int size, int measureSpec) {
         int result = 0;
 
         final int modeSpec = View.MeasureSpec.getMode(measureSpec);
         final int sizeSpec = View.MeasureSpec.getSize(measureSpec);
 
-        switch (modeSpec)
-        {
+        switch (modeSpec) {
             case View.MeasureSpec.UNSPECIFIED:
                 result = size;
                 break;
@@ -328,8 +300,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b)
-    {
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (mIsDebug)
             Log.i(getDebugTag(), "onLayout");
 
@@ -337,8 +308,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         notifyViewPositionChanged();
     }
 
-    private void layoutInternal()
-    {
+    private void layoutInternal() {
         final boolean isViewIdle = isViewIdle();
 
         if (mIsDebug)
@@ -349,11 +319,9 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
 
         int left = 0;
         int top = mAttrModel.getMarginTop();
-        if (isViewIdle)
-        {
+        if (isViewIdle) {
             left = mIsChecked ? getLeftChecked() : getLeftNormal();
-        } else
-        {
+        } else {
             left = mViewThumb.getLeft();
         }
         mViewThumb.layout(left, top,
@@ -366,34 +334,28 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         dealViewIdle();
     }
 
-    private void dealViewIdle()
-    {
-        if (isViewIdle())
-        {
+    private void dealViewIdle() {
+        if (isViewIdle()) {
             if (mIsDebug)
                 Log.i(getDebugTag(), "dealViewIdle isChecked:" + mIsChecked);
 
-            if (mIsChecked)
-            {
+            if (mIsChecked) {
                 showCheckedView(true);
                 showNormalView(false);
-            } else
-            {
+            } else {
                 showCheckedView(false);
                 showNormalView(true);
             }
         }
     }
 
-    private void showCheckedView(boolean show)
-    {
+    private void showCheckedView(boolean show) {
         float alpha = show ? 1.0f : 0f;
         if (mViewChecked.getAlpha() != alpha)
             mViewChecked.setAlpha(alpha);
     }
 
-    private void showNormalView(boolean show)
-    {
+    private void showNormalView(boolean show) {
         float alpha = show ? 1.0f : 0f;
         if (mViewNormal.getAlpha() != alpha)
             mViewNormal.setAlpha(alpha);
@@ -402,30 +364,25 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
     //----------SwitchButton implements start----------
 
     @Override
-    public boolean isChecked()
-    {
+    public boolean isChecked() {
         return mIsChecked;
     }
 
     @Override
-    public boolean setChecked(boolean checked, boolean anim, boolean notifyCallback)
-    {
+    public boolean setChecked(boolean checked, boolean anim, boolean notifyCallback) {
         if (mIsDebug)
             Log.i(getDebugTag(), "setChecked:" + mIsChecked + " -> " + checked);
 
         final boolean changed = mIsChecked != checked;
-        if (changed)
-        {
+        if (changed) {
             mIsChecked = checked;
             mViewThumb.setSelected(checked);
         }
 
         updateViewByState(mIsChecked, anim);
 
-        if (changed)
-        {
-            if (notifyCallback)
-            {
+        if (changed) {
+            if (notifyCallback) {
                 if (mOnCheckedChangeCallback != null)
                     mOnCheckedChangeCallback.onCheckedChanged(mIsChecked, this);
             }
@@ -435,58 +392,47 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
     }
 
     @Override
-    public void toggleChecked(boolean anim, boolean notifyCallback)
-    {
+    public void toggleChecked(boolean anim, boolean notifyCallback) {
         setChecked(!mIsChecked, anim, notifyCallback);
     }
 
     @Override
-    public void setOnCheckedChangeCallback(OnCheckedChangeCallback callback)
-    {
+    public void setOnCheckedChangeCallback(OnCheckedChangeCallback callback) {
         mOnCheckedChangeCallback = callback;
     }
 
     @Override
-    public void setOnViewPositionChangeCallback(OnViewPositionChangeCallback callback)
-    {
+    public void setOnViewPositionChangeCallback(OnViewPositionChangeCallback callback) {
         mOnViewPositionChangeCallback = callback;
     }
 
     @Override
-    public void setOnScrollStateChangeCallback(OnScrollStateChangeCallback callback)
-    {
+    public void setOnScrollStateChangeCallback(OnScrollStateChangeCallback callback) {
         mOnScrollStateChangeCallback = callback;
     }
 
     @Override
-    public float getScrollPercent()
-    {
+    public float getScrollPercent() {
         return getScrollDistance() / (float) getAvailableWidth();
     }
 
     @Override
-    public ScrollState getScrollState()
-    {
+    public ScrollState getScrollState() {
         return mScrollState;
     }
 
     @Override
-    public View getViewNormal()
-    {
+    public View getViewNormal() {
         return mViewNormal;
     }
 
     @Override
-    public View getViewChecked()
-    {
+    public View getViewChecked() {
         return mViewChecked;
     }
 
     @Override
-    public View getViewThumb()
-    {
+    public View getViewThumb() {
         return mViewThumb;
     }
-
-    //----------SwitchButton implements end----------
 }
