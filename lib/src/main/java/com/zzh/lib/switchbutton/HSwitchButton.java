@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2017 Sunday (https://github.com/zj565061763)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.zzh.lib.switchbutton;
 
 import android.content.Context;
@@ -23,13 +8,13 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 
-import com.zzh.lib.switchbutton.gesture.FGestureManager;
-import com.zzh.lib.switchbutton.gesture.FTouchHelper;
+import com.zzh.lib.switchbutton.gesture.HGestureManager;
+import com.zzh.lib.switchbutton.gesture.HTouchHelper;
 
-public class FSwitchButton extends BaseSwitchButton {
-    private FGestureManager mGestureManager;
+public class HSwitchButton extends BaseSwitchButton {
+    private HGestureManager mGestureManager;
 
-    public FSwitchButton(Context context, AttributeSet attrs) {
+    public HSwitchButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -40,14 +25,14 @@ public class FSwitchButton extends BaseSwitchButton {
             mGestureManager.setDebug(debug);
     }
 
-    private FGestureManager getGestureManager() {
+    private HGestureManager getGestureManager() {
         if (mGestureManager == null) {
-            mGestureManager = new FGestureManager(this, new FGestureManager.Callback() {
+            mGestureManager = new HGestureManager(this, new HGestureManager.Callback() {
                 @Override
                 public boolean shouldInterceptEvent(MotionEvent event) {
                     boolean shouldInterceptEvent = false;
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        if (FTouchHelper.isViewUnder(getViewThumb(), (int) event.getX(), (int) event.getY()))
+                        if (HTouchHelper.isViewUnder(getViewThumb(), (int) event.getX(), (int) event.getY()))
                             shouldInterceptEvent = true;
                     } else {
                         shouldInterceptEvent = canPull();
@@ -105,14 +90,14 @@ public class FSwitchButton extends BaseSwitchButton {
                 }
 
                 @Override
-                public void onStateChanged(FGestureManager.State oldState, FGestureManager.State newState) {
+                public void onStateChanged(HGestureManager.State oldState, HGestureManager.State newState) {
                     switch (newState) {
                         case Consume:
                             setScrollState(ScrollState.Drag);
                             break;
                         case Fling:
                             setScrollState(ScrollState.Fling);
-                            ViewCompat.postInvalidateOnAnimation(FSwitchButton.this);
+                            ViewCompat.postInvalidateOnAnimation(HSwitchButton.this);
                             break;
                         case Idle:
                             setScrollState(ScrollState.Idle);
@@ -127,15 +112,15 @@ public class FSwitchButton extends BaseSwitchButton {
                 }
             });
             mGestureManager.setDebug(mIsDebug);
-            mGestureManager.getTagHolder().setCallback(new FGestureManager.TagHolder.Callback() {
+            mGestureManager.getTagHolder().setCallback(new HGestureManager.TagHolder.Callback() {
                 @Override
                 public void onTagInterceptChanged(boolean tag) {
-                    FTouchHelper.requestDisallowInterceptTouchEvent(FSwitchButton.this, tag);
+                    HTouchHelper.requestDisallowInterceptTouchEvent(HSwitchButton.this, tag);
                 }
 
                 @Override
                 public void onTagConsumeChanged(boolean tag) {
-                    FTouchHelper.requestDisallowInterceptTouchEvent(FSwitchButton.this, tag);
+                    HTouchHelper.requestDisallowInterceptTouchEvent(HSwitchButton.this, tag);
                 }
             });
         }
@@ -150,7 +135,7 @@ public class FSwitchButton extends BaseSwitchButton {
 
     @Override
     protected boolean isViewIdle() {
-        return getGestureManager().getState() == FGestureManager.State.Idle;
+        return getGestureManager().getState() == HGestureManager.State.Idle;
     }
 
     @Override

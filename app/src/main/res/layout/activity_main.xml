@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <com.sd.lib.switchbutton.FSwitchButton
+    <com.zzh.lib.switchbutton.HSwitchButton
         android:id="@+id/sb_custom"
         android:layout_width="50dp"
         android:layout_height="25dp"
@@ -22,7 +22,7 @@
         app:sbMarginTop="2dp" />
 
 
-    <com.sd.lib.switchbutton.FSwitchButton
+    <com.zzh.lib.switchbutton.HSwitchButton
         android:id="@+id/sb_test"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -53,7 +53,7 @@
             android:gravity="center_vertical"
             android:text="thumb" />
 
-    </com.sd.lib.switchbutton.FSwitchButton>
+    </com.zzh.lib.switchbutton.HSwitchButton>
 
     <Button
         android:layout_width="wrap_content"

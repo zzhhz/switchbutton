@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2017 Sunday (https://github.com/zj565061763)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.zzh.lib.switchbutton.gesture;
 
 import android.content.Context;
@@ -29,8 +14,7 @@ import java.util.List;
 /**
  * 触摸事件处理帮助类<br>
  */
-public class FTouchHelper
-{
+public class HTouchHelper {
     private float mCurrentX;
     private float mCurrentY;
 
@@ -47,8 +31,7 @@ public class FTouchHelper
      *
      * @param ev
      */
-    public void processTouchEvent(MotionEvent ev)
-    {
+    public void processTouchEvent(MotionEvent ev) {
         mLastX = mCurrentX;
         mLastY = mCurrentY;
 
@@ -56,8 +39,7 @@ public class FTouchHelper
         mCurrentY = ev.getRawY();
 
         final int aciton = ev.getAction();
-        switch (aciton)
-        {
+        switch (aciton) {
             case MotionEvent.ACTION_DOWN:
                 mDownX = mCurrentX;
                 mDownY = mCurrentY;
@@ -68,33 +50,27 @@ public class FTouchHelper
         }
     }
 
-    public float getCurrentX()
-    {
+    public float getCurrentX() {
         return mCurrentX;
     }
 
-    public float getCurrentY()
-    {
+    public float getCurrentY() {
         return mCurrentY;
     }
 
-    public float getLastX()
-    {
+    public float getLastX() {
         return mLastX;
     }
 
-    public float getLastY()
-    {
+    public float getLastY() {
         return mLastY;
     }
 
-    public float getDownX()
-    {
+    public float getDownX() {
         return mDownX;
     }
 
-    public float getDownY()
-    {
+    public float getDownY() {
         return mDownY;
     }
 
@@ -105,16 +81,14 @@ public class FTouchHelper
      *
      * @return
      */
-    public float getDeltaX()
-    {
+    public float getDeltaX() {
         return mCurrentX - mLastX;
     }
 
     /**
      * 返回当前事件和上一次事件之间的y轴方向增量
      */
-    public float getDeltaY()
-    {
+    public float getDeltaY() {
         return mCurrentY - mLastY;
     }
 
@@ -123,8 +97,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public float getDeltaXFromDown()
-    {
+    public float getDeltaXFromDown() {
         return mCurrentX - mDownX;
     }
 
@@ -133,8 +106,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public float getDeltaYFromDown()
-    {
+    public float getDeltaYFromDown() {
         return mCurrentY - mDownY;
     }
 
@@ -148,8 +120,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public double getDegreeX()
-    {
+    public double getDegreeX() {
         final float dx = getDeltaX();
         if (dx == 0)
             return 0;
@@ -164,8 +135,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public double getDegreeY()
-    {
+    public double getDegreeY() {
         final float dy = getDeltaY();
         if (dy == 0)
             return 0;
@@ -180,8 +150,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public double getDegreeXFromDown()
-    {
+    public double getDegreeXFromDown() {
         final float dx = getDeltaXFromDown();
         if (dx == 0)
             return 0;
@@ -196,8 +165,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public double getDegreeYFromDown()
-    {
+    public double getDegreeYFromDown() {
         final float dy = getDeltaYFromDown();
         if (dy == 0)
             return 0;
@@ -217,8 +185,7 @@ public class FTouchHelper
      * @param touchSlop 最小移动距离
      * @return
      */
-    public boolean saveDirection(final int touchSlop)
-    {
+    public boolean saveDirection(final int touchSlop) {
         if (mDirection != Direction.None)
             return false;
 
@@ -232,15 +199,13 @@ public class FTouchHelper
         if (deltaMax == 0 || deltaMax < touchSlop)
             return false;
 
-        if (dxAbs > dyAbs)
-        {
+        if (dxAbs > dyAbs) {
             // horizontal
             if (dx < 0)
                 setDirection(Direction.MoveLeft);
             else
                 setDirection(Direction.MoveRight);
-        } else
-        {
+        } else {
             // vertical
             if (dy < 0)
                 setDirection(Direction.MoveTop);
@@ -257,8 +222,7 @@ public class FTouchHelper
      * @param touchSlop 最小移动距离
      * @return
      */
-    public boolean saveDirectionHorizontal(final int touchSlop)
-    {
+    public boolean saveDirectionHorizontal(final int touchSlop) {
         if (mDirection == Direction.MoveLeft || mDirection == Direction.MoveRight)
             return false;
 
@@ -283,8 +247,7 @@ public class FTouchHelper
      * @param touchSlop 最小移动距离
      * @return
      */
-    public boolean saveDirectionVertical(final int touchSlop)
-    {
+    public boolean saveDirectionVertical(final int touchSlop) {
         if (mDirection == Direction.MoveTop || mDirection == Direction.MoveBottom)
             return false;
 
@@ -303,8 +266,7 @@ public class FTouchHelper
         return true;
     }
 
-    private void setDirection(Direction direction)
-    {
+    private void setDirection(Direction direction) {
         mDirection = direction;
     }
 
@@ -313,8 +275,7 @@ public class FTouchHelper
      *
      * @return
      */
-    public Direction getDirection()
-    {
+    public Direction getDirection() {
         return mDirection;
     }
 
@@ -327,10 +288,8 @@ public class FTouchHelper
      * @param context
      * @return
      */
-    public boolean isClick(MotionEvent event, Context context)
-    {
-        if (event.getAction() == MotionEvent.ACTION_UP)
-        {
+    public boolean isClick(MotionEvent event, Context context) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
             final long clickTimeout = ViewConfiguration.getPressedStateDuration() + ViewConfiguration.getTapTimeout();
             final int touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
 
@@ -355,17 +314,14 @@ public class FTouchHelper
      * @param delta   增量
      * @return
      */
-    public static int getLegalDelta(int current, int min, int max, int delta)
-    {
+    public static int getLegalDelta(int current, int min, int max, int delta) {
         if (delta == 0)
             return 0;
 
         final int future = current + delta;
-        if (future < min)
-        {
+        if (future < min) {
             delta += (min - future);
-        } else if (future > max)
-        {
+        } else if (future > max) {
             delta += (max - future);
         }
         return delta;
@@ -377,8 +333,7 @@ public class FTouchHelper
      * @param view
      * @param disallowIntercept true-请求父view不要拦截，false-父view可以拦截
      */
-    public static void requestDisallowInterceptTouchEvent(View view, boolean disallowIntercept)
-    {
+    public static void requestDisallowInterceptTouchEvent(View view, boolean disallowIntercept) {
         final ViewParent parent = view.getParent();
         if (parent != null)
             parent.requestDisallowInterceptTouchEvent(disallowIntercept);
@@ -392,8 +347,7 @@ public class FTouchHelper
      * @param y
      * @return
      */
-    public static boolean isViewUnder(View view, int x, int y)
-    {
+    public static boolean isViewUnder(View view, int x, int y) {
         return x >= view.getLeft() && x < view.getRight()
                 && y >= view.getTop() && y < view.getBottom();
     }
@@ -406,8 +360,7 @@ public class FTouchHelper
      * @param y
      * @return
      */
-    public static boolean isViewUnderScreen(View view, int x, int y)
-    {
+    public static boolean isViewUnderScreen(View view, int x, int y) {
         final int[] location = new int[2];
         view.getLocationOnScreen(location);
         return x >= location[0] && x < location[0] + view.getWidth()
@@ -422,16 +375,13 @@ public class FTouchHelper
      * @param y
      * @return
      */
-    public static List<View> findChildrenUnder(ViewGroup parent, int x, int y)
-    {
+    public static List<View> findChildrenUnder(ViewGroup parent, int x, int y) {
         final List<View> list = new ArrayList<>(2);
 
         final int count = parent.getChildCount();
-        for (int i = count - 1; i >= 0; i--)
-        {
+        for (int i = count - 1; i >= 0; i--) {
             final View child = parent.getChildAt(i);
-            if (isViewUnder(child, x, y))
-            {
+            if (isViewUnder(child, x, y)) {
                 list.add(child);
             }
         }
@@ -446,8 +396,7 @@ public class FTouchHelper
      * @param y
      * @return
      */
-    public static View findTopChildUnder(ViewGroup parent, int x, int y)
-    {
+    public static View findTopChildUnder(ViewGroup parent, int x, int y) {
         if (Build.VERSION.SDK_INT < 21)
             return parent.getChildAt(parent.getChildCount() - 1);
 
@@ -456,13 +405,10 @@ public class FTouchHelper
             return null;
 
         View target = null;
-        for (View item : list)
-        {
-            if (target == null)
-            {
+        for (View item : list) {
+            if (target == null) {
                 target = item;
-            } else
-            {
+            } else {
                 if (item.getZ() > target.getZ())
                     target = item;
             }
@@ -477,8 +423,7 @@ public class FTouchHelper
      * @param view
      * @return
      */
-    public static boolean isScrollToLeft(View view)
-    {
+    public static boolean isScrollToLeft(View view) {
         return !view.canScrollHorizontally(-1);
     }
 
@@ -488,8 +433,7 @@ public class FTouchHelper
      * @param view
      * @return
      */
-    public static boolean isScrollToTop(View view)
-    {
+    public static boolean isScrollToTop(View view) {
         return !view.canScrollVertically(-1);
     }
 
@@ -499,8 +443,7 @@ public class FTouchHelper
      * @param view
      * @return
      */
-    public static boolean isScrollToRight(View view)
-    {
+    public static boolean isScrollToRight(View view) {
         return !view.canScrollHorizontally(1);
     }
 
@@ -510,15 +453,13 @@ public class FTouchHelper
      * @param view
      * @return
      */
-    public static boolean isScrollToBottom(View view)
-    {
+    public static boolean isScrollToBottom(View view) {
         return !view.canScrollVertically(1);
     }
 
     //----------static method end----------
 
-    public StringBuilder getDebugInfo()
-    {
+    public StringBuilder getDebugInfo() {
         final StringBuilder sb = new StringBuilder("\r\n")
                 .append("Down:").append(mDownX).append(",").append(mDownY).append("\r\n")
                 .append("Current:").append(mCurrentX).append(",").append(mCurrentY).append("\r\n")
@@ -531,8 +472,7 @@ public class FTouchHelper
         return sb;
     }
 
-    public enum Direction
-    {
+    public enum Direction {
         None,
         MoveLeft,
         MoveTop,
