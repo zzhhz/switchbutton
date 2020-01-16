@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.zzh.lib.switchbutton.HSwitchButton
+        android:id="@+id/sb_custom"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        app:sbImageChecked="@drawable/layer_checked_view"
+        app:sbImageNormal="@drawable/layer_normal_view"
+        app:sbImageThumb="@drawable/layer_thumb_view"
+        app:sbIsChecked="true"
+        app:sbIsDebug="true"
+        app:sbIsNeedToggleAnim="true"
+        app:sbMarginBottom="2dp"
+        app:sbMarginLeft="0dp"
+        app:sbMarginRight="2dp"
+        app:sbMarginTop="2dp" />
+
+
+    <com.zzh.lib.switchbutton.HSwitchButton
+        android:id="@+id/sb_test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:sbIsDebug="true">
+
+        <TextView
+            android:id="@id/lib_sb_view_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="normal" />
+
+        <TextView
+            android:id="@id/lib_sb_view_checked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="checked" />
+
+        <TextView
+            android:id="@id/lib_sb_view_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/layer_thumb_view"
+            android:gravity="center_vertical"
+            android:text="thumb" />
+
+    </com.zzh.lib.switchbutton.HSwitchButton>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="button" />
+
+</LinearLayout>
