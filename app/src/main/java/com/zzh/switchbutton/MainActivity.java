@@ -1,12 +1,13 @@
 package com.zzh.switchbutton;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.zzh.lib.switchbutton.HSwitchButton;
 import com.zzh.lib.switchbutton.SwitchButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i(TAG, "onCheckedChanged:" + checked);
             }
         });
-        sb_custom.setOnViewPositionChangeCallback(new SwitchButton.OnViewPositionChangeCallback() {
+        /*sb_custom.setOnViewPositionChangeCallback(new SwitchButton.OnViewPositionChangeCallback() {
             @Override
             public void onViewPositionChanged(SwitchButton switchButton) {
                 final float percent = switchButton.getScrollPercent();
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switchButton.getViewNormal().setScaleY(scalePercent);
                 switchButton.getViewChecked().setScaleY(scalePercent);
             }
-        });
+        });*/
         sb_custom.setOnScrollStateChangeCallback(new SwitchButton.OnScrollStateChangeCallback() {
             @Override
             public void onScrollStateChanged(SwitchButton.ScrollState oldState, SwitchButton.ScrollState newState, SwitchButton switchButton) {

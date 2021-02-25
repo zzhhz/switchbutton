@@ -3,7 +3,6 @@ package com.zzh.lib.switchbutton;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.zzh.lib.switchbutton.gesture.HTouchHelper;
+
+import androidx.core.view.ViewCompat;
 
 
 public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton {

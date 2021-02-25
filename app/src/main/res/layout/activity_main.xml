@@ -8,18 +8,14 @@
 
     <com.zzh.lib.switchbutton.HSwitchButton
         android:id="@+id/sb_custom"
-        android:layout_width="50dp"
+        android:layout_width="75dp"
         android:layout_height="25dp"
-        app:sbImageChecked="@drawable/layer_checked_view"
-        app:sbImageNormal="@drawable/layer_normal_view"
-        app:sbImageThumb="@drawable/layer_thumb_view"
+        app:sbImageChecked="@drawable/ic_mvp_on_clinic"
+        app:sbImageNormal="@drawable/ic_mvp_off_clinic"
+        app:sbImageThumb="@drawable/ic_mvp_clinic_status"
         app:sbIsChecked="true"
         app:sbIsDebug="true"
-        app:sbIsNeedToggleAnim="true"
-        app:sbMarginBottom="2dp"
-        app:sbMarginLeft="0dp"
-        app:sbMarginRight="2dp"
-        app:sbMarginTop="2dp" />
+        app:sbIsNeedToggleAnim="true" />
 
 
     <com.zzh.lib.switchbutton.HSwitchButton
@@ -27,7 +23,8 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        app:sbIsDebug="true">
+        app:sbIsDebug="true"
+        app:sbIsNeedToggleAnim="true">
 
         <ImageView
             android:id="@id/lib_sb_view_normal"
@@ -49,8 +46,8 @@
             android:id="@id/lib_sb_view_thumb"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:background="@drawable/ic_mvp_clinic_status"
+            android:gravity="center_vertical"
             android:text="是" />
 
     </com.zzh.lib.switchbutton.HSwitchButton>

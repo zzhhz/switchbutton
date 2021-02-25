@@ -1,7 +1,6 @@
 package com.zzh.lib.switchbutton;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -10,6 +9,8 @@ import android.view.ViewConfiguration;
 
 import com.zzh.lib.switchbutton.gesture.HGestureManager;
 import com.zzh.lib.switchbutton.gesture.HTouchHelper;
+
+import androidx.core.view.ViewCompat;
 
 public class HSwitchButton extends BaseSwitchButton {
     private HGestureManager mGestureManager;
