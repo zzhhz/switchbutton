@@ -376,10 +376,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
                 ((StateListDrawable) background).selectDrawable(checked ? 0 : 1);
                 if (mIsDebug)
                     Log.i(getDebugTag(), "setChecked: 状态图片改变");
-            } else {
-                Log.i(getDebugTag(), "setChecked: " + mViewThumb);
             }
-
         }
 
         updateViewByState(mIsChecked, anim);
