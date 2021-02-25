@@ -24,34 +24,34 @@
 
     <com.zzh.lib.switchbutton.HSwitchButton
         android:id="@+id/sb_test"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         app:sbIsDebug="true">
 
-        <TextView
+        <ImageView
             android:id="@id/lib_sb_view_normal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
             android:gravity="center"
+            android:src="@drawable/ic_mvp_off_clinic"
             android:text="normal" />
 
-        <TextView
+        <ImageView
             android:id="@id/lib_sb_view_checked"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:src="@drawable/ic_mvp_on_clinic"
             android:text="checked" />
 
-        <TextView
+        <View
             android:id="@id/lib_sb_view_thumb"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@drawable/layer_thumb_view"
             android:gravity="center_vertical"
-            android:text="thumb" />
+            android:background="@drawable/ic_mvp_clinic_status"
+            android:text="是" />
 
     </com.zzh.lib.switchbutton.HSwitchButton>
 

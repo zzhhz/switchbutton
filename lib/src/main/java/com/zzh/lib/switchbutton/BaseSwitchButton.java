@@ -1,11 +1,14 @@
 package com.zzh.lib.switchbutton;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.zzh.lib.switchbutton.gesture.HTouchHelper;
 
@@ -14,7 +17,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
     private View mViewNormal;
     private View mViewChecked;
     private View mViewThumb;
-    protected final SBAttrModel mAttrModel = new SBAttrModel();
+    protected final HAttrModel mAttrModel = new HAttrModel();
 
     private boolean mIsChecked;
     private ScrollState mScrollState = ScrollState.Idle;
@@ -42,7 +45,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         addView(checked, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mViewChecked = checked;
 
-        final View thumb = new SBThumbView(getContext());
+        final View thumb = new HThumbView(getContext());
         thumb.setBackgroundResource(mAttrModel.getImageThumbResId());
         addView(thumb, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mViewThumb = thumb;
@@ -362,6 +365,20 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         if (changed) {
             mIsChecked = checked;
             mViewThumb.setSelected(checked);
+            Drawable background = null;
+            if (mViewThumb instanceof ImageView) {
+                background = ((ImageView) mViewThumb).getDrawable();
+            } else {
+                background = mViewThumb.getBackground();
+            }
+            if (background != null && background instanceof StateListDrawable) {
+                ((StateListDrawable) background).selectDrawable(checked ? 0 : 1);
+                if (mIsDebug)
+                    Log.i(getDebugTag(), "setChecked: 状态图片改变");
+            } else {
+                Log.i(getDebugTag(), "setChecked: " + mViewThumb);
+            }
+
         }
 
         updateViewByState(mIsChecked, anim);

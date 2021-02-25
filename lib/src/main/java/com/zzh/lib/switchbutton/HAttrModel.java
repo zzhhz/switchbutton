@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 
-class SBAttrModel {
+class HAttrModel {
     /**
      * 正常view图片id
      */
