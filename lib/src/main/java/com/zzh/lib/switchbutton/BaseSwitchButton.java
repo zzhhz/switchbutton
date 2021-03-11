@@ -331,7 +331,9 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
             if (mIsChecked) {
                 showCheckedView(true);
                 showNormalView(false);
+                updateBtnState(true);
             } else {
+                updateBtnState(false);
                 showCheckedView(false);
                 showNormalView(true);
             }
@@ -366,17 +368,7 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         if (changed) {
             mIsChecked = checked;
             mViewThumb.setSelected(checked);
-            Drawable background = null;
-            if (mViewThumb instanceof ImageView) {
-                background = ((ImageView) mViewThumb).getDrawable();
-            } else {
-                background = mViewThumb.getBackground();
-            }
-            if (background != null && background instanceof StateListDrawable) {
-                ((StateListDrawable) background).selectDrawable(checked ? 0 : 1);
-                if (mIsDebug)
-                    Log.i(getDebugTag(), "setChecked: 状态图片改变");
-            }
+            updateBtnState(checked);
         }
 
         updateViewByState(mIsChecked, anim);
@@ -389,6 +381,20 @@ public abstract class BaseSwitchButton extends ViewGroup implements SwitchButton
         }
 
         return changed;
+    }
+
+    private void updateBtnState(boolean checked) {
+        Drawable background = null;
+        if (mViewThumb instanceof ImageView) {
+            background = ((ImageView) mViewThumb).getDrawable();
+        } else {
+            background = mViewThumb.getBackground();
+        }
+        if (background != null && background instanceof StateListDrawable) {
+            ((StateListDrawable) background).selectDrawable(checked ? 0 : 1);
+            if (mIsDebug)
+                Log.i(getDebugTag(), "setChecked: 状态图片改变");
+        }
     }
 
     @Override
